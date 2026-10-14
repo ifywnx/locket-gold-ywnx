@@ -61,13 +61,13 @@ if (ua.includes("Locket")) {
             title: "Lên LocketGold rồi đó 😎",
             feature_set: [
                 {
-                    title: "Nhớ follow tiktok @duyvinh.09 ✨",
-                    body: "Một follow của bạn, một niềm vui của mình 💛",
+                    title: "Chào mừng đến với ifywnx ✨",
+                    body: "Chúc bạn chia sẻ thật nhiều khoảnh khắc đẹp 💛",
                     imageURL: "https://i.ibb.co/gZ6HkyWT/L-n-Gold-R-i.png"
                 }
             ],
             primary_button_title: "Xong",
-            campaign: "locket_gold_welcome_v3",
+            campaign: "ifywnx_welcome_v4",
             start_at: "2020-01-01T00:00:00",
             end_at: "2099-12-31T23:59:59",
             use_local_time_zone: true
@@ -76,7 +76,7 @@ if (ua.includes("Locket")) {
         profile_badge_visible: "true",
         lunar_new_year_app_icon_enabled: "true",
         settings_instagram_url: "https://www.instagram.com/dvinh.09/",
-        settings_tiktok_url: "https://tiktok.com/@duyvinh.09"
+        settings_tiktok_url: "https://tiktok.com/@ifywnx"
     });
 
     // ============================================================
