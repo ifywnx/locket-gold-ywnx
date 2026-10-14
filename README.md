@@ -6,9 +6,9 @@ Các script sửa phản hồi trên thiết bị; chúng không tạo giao dị
 
 ## Cài đặt bằng mã truy cập (repo private)
 
-**Trang dành cho người dùng:** https://ifywnx-locket-install.sharpheron32.chatgpt.site
+**Trang dành cho người dùng:** https://ifywnx-install.agilechub512.chatgpt.site
 
-**Quản trị:** https://ifywnx-locket-install.sharpheron32.chatgpt.site/admin
+**Quản trị:** https://ifywnx-install.agilechub512.chatgpt.site/admin
 
 1. Chủ site mở trang quản trị và đăng nhập ChatGPT bằng tài khoản tạo site.
 2. Nhập tên người nhận, thời hạn 1–365 ngày và bấm **Tạo mã**.
@@ -134,7 +134,7 @@ Bộ kiểm tra xác nhận script hoàn thành đúng một lần, giữ nguyê
 
 ## Các file cài đặt tên rõ ràng
 
-Bản cập nhật giao diện có 5 lựa chọn (cần triển khai lại Sites để xuất hiện trên web):
+Bản cập nhật giao diện có 5 lựa chọn :
 
 | Tệp | Công dụng |
 |---|---|
@@ -149,3 +149,5 @@ Các tệp có tên mới nằm trong `downloads/`. Giữ tên cũ để không 
 Hồ sơ DNS dùng `https://my.ublockdns.com/z451ak95`, có thể áp dụng ngoài Shadowrocket. Không bảo đảm duy trì Gold. Cài bằng Safari rồi vào Cài đặt → Cài đặt chung → VPN & Quản lý thiết bị. Gỡ hồ sơ ở cùng mục để ngừng sử dụng; tắt Shadowrocket không tự gỡ DNS. Nhà cung cấp DNS có thể nhận truy vấn tên miền.
 
 Các script Sub-Store bên ngoài trong All Apps vẫn dùng nguồn công khai gốc, không chứa mã truy cập riêng. Các script nội bộ đều đi qua endpoint kiểm tra mã.
+
+Web đã được dựng lại dưới tài khoản mới; cần tạo mã mới tại /admin. Site cũ không bị xoá.
