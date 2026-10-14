@@ -131,3 +131,21 @@ git diff --check
 ```
 
 Bộ kiểm tra xác nhận script hoàn thành đúng một lần, giữ nguyên phản hồi lỗi/ứng dụng khác, không trùng ID caption và các URL nội bộ (kể cả URL mã hoá) trỏ tới tệp tồn tại. GitHub Actions tự chạy kiểm tra khi push hoặc mở pull request. Các kiểm tra này không thay thế kiểm thử trên thiết bị.
+
+## Các file cài đặt tên rõ ràng
+
+Bản cập nhật giao diện có 5 lựa chọn (cần triển khai lại Sites để xuất hiện trên web):
+
+| Tệp | Công dụng |
+|---|---|
+| `ifywnx-Locket-Captions.sgmodule` | Module Locket và caption |
+| `ifywnx-AllApps-Config.conf` | Cấu hình tổng hợp đầy đủ |
+| `ifywnx-AllApps-Module.sgmodule` | Module tổng hợp thêm vào cấu hình hiện có |
+| `ifywnx-GPS-Module.sgmodule` | Giả phản hồi vị trí, mặc định Tokyo |
+| `ifywnx-Locket-DNS.mobileconfig` | Hồ sơ DNS tuỳ chọn của mục “config duy trì” |
+
+Các tệp có tên mới nằm trong `downloads/`. Giữ tên cũ để không làm hỏng các cài đặt đang dùng. Chọn một bộ chính; không bật trùng cấu hình tổng hợp, module tổng hợp và module Locket. GPS/DNS không bắt buộc.
+
+Hồ sơ DNS dùng `https://my.ublockdns.com/z451ak95`, có thể áp dụng ngoài Shadowrocket. Không bảo đảm duy trì Gold. Cài bằng Safari rồi vào Cài đặt → Cài đặt chung → VPN & Quản lý thiết bị. Gỡ hồ sơ ở cùng mục để ngừng sử dụng; tắt Shadowrocket không tự gỡ DNS. Nhà cung cấp DNS có thể nhận truy vấn tên miền.
+
+Các script Sub-Store bên ngoài trong All Apps vẫn dùng nguồn công khai gốc, không chứa mã truy cập riêng. Các script nội bộ đều đi qua endpoint kiểm tra mã.

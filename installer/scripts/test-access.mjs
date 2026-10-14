@@ -9,3 +9,11 @@ const a=await post('/api/access',{code:'a'.repeat(64)});assert.equal(a.status,20
 assert.equal((await fetch(origin+'/download/'+'a'.repeat(64)+'/private-assets.ts')).status,404);
 assert.equal((await post('/api/access',null)).status,400);
 console.log('PASS: access verification, denied admin, expiry, revocation, protected downloads, URL rewriting, allowlist, malformed JSON.');
+for(const file of ['ifywnx-Locket-Captions.sgmodule','ifywnx-AllApps-Config.conf','ifywnx-AllApps-Module.sgmodule','ifywnx-GPS-Module.sgmodule','ifywnx-Locket-DNS.mobileconfig']){
+ const url=origin+'/download/'+'a'.repeat(64)+'/'+file;
+ const r=await fetch(url);assert.equal(r.status,200);const text=await r.text();
+ if(file.endsWith('.mobileconfig')){assert.equal(r.headers.get('content-type'),'application/x-apple-aspen-config');assert.ok(text.includes('https://my.ublockdns.com/z451ak95'))}
+ for(const m of text.matchAll(/script-path=([^,\s]+)/g)){if(m[1].startsWith('https://github.com/sub-store-org/Sub-Store/')) continue; assert.ok(m[1].startsWith(origin+'/download/'));assert.equal((await fetch(m[1])).status,200)}
+ assert.equal((await fetch(url.replace('a'.repeat(64),'c'.repeat(64)))).status,403);
+}
+console.log('PASS: all five downloads, protected script dependencies and DNS MIME type.');
