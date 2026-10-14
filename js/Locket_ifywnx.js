@@ -1,11 +1,18 @@
+(function () {
+  var result = {};
+  try { result = rewrite(); } catch (error) { /* Preserve original response. */ }
+  $done(result);
+  function rewrite() {
 // ========= ID ========= //
 const mapping = {
   'Locket': ['Gold']
 };
 // =========   Phần cố định  ========= // 
 // =========  @ifywnx ========= //
-var ua = $request.headers["User-Agent"] || $request.headers["user-agent"],
+var ua = $request.headers["User-Agent"] || $request.headers["user-agent"] || "",
   obj = JSON.parse($response.body);
+if (!ua.includes("Locket") || !obj || !obj.subscriber ||
+    !obj.subscriber.subscriptions || !obj.subscriber.entitlements) return {};
 obj.Attention = "Chúc mừng bạn! Vui lòng không bán hoặc chia sẻ cho người khác!";
 var ifywnx = {
       auto_resume_date: null,
@@ -39,6 +46,7 @@ if (match) {
   let [e, s] = mapping[match];
   s ? (locketGold.product_identifier = s, obj.subscriber.subscriptions[s] = ifywnx) : obj.subscriber.subscriptions["locket_1600_1y"] = ifywnx, obj.subscriber.entitlements[e] = locketGold
 } else obj.subscriber.subscriptions["locket_1600_1y"] = ifywnx, obj.subscriber.entitlements.pro = locketGold;
-$done({
-  body: JSON.stringify(obj)
-});
+return { body: JSON.stringify(obj) };
+
+  }
+})();

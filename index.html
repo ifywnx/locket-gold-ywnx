@@ -105,7 +105,7 @@
                                     <i data-feather="copy" class="w-4 h-4"></i>
                                 </button>
                             </div>
-                            <a href="shadowrocket://install?module=https%3A%2F%2Fraw.githubusercontent.com%2Fifywnx%2FModule_IOS%2Frefs%2Fheads%2Fmain%2FAll_In_One.sgmodule" class="mt-2 w-full bg-gradient-to-r from-blue-500 to-sky-400 hover:from-blue-600 hover:to-sky-500 focus:ring-2 focus:ring-blue-300 focus:outline-none text-black font-semibold py-2 px-4 rounded-lg transition-all inline-flex items-center justify-center gap-2">
+                            <a href="shadowrocket://install?module=https%3A%2F%2Fraw.githubusercontent.com%2Fifywnx%2Flocket-gold-ywnx%2Frefs%2Fheads%2Fmain%2FAll_In_One.sgmodule" class="mt-2 w-full bg-gradient-to-r from-blue-500 to-sky-400 hover:from-blue-600 hover:to-sky-500 focus:ring-2 focus:ring-blue-300 focus:outline-none text-black font-semibold py-2 px-4 rounded-lg transition-all inline-flex items-center justify-center gap-2">
                                 <i data-feather="plus" class="w-5 h-5"></i>
                                 <span data-i18n="btn-open-sr">Mở trong ShadowRocket</span>
                             </a>
@@ -118,7 +118,7 @@
                                     <i data-feather="copy" class="w-4 h-4"></i>
                                 </button>
                             </div>
-                            <a href="shadowrocket://install?module=https%3A%2F%2Fraw.githubusercontent.com%2Fifywnx%2FModule_IOS%2Frefs%2Fheads%2Fmain%2Fmodules%2Fios-location-spoofer.sgmodule" class="mt-2 w-full bg-gradient-to-r from-blue-500 to-sky-400 hover:from-blue-600 hover:to-sky-500 focus:ring-2 focus:ring-blue-300 focus:outline-none text-black font-semibold py-2 px-4 rounded-lg transition-all inline-flex items-center justify-center gap-2">
+                            <a href="shadowrocket://install?module=https%3A%2F%2Fraw.githubusercontent.com%2Fifywnx%2Flocket-gold-ywnx%2Frefs%2Fheads%2Fmain%2Fmodules%2Fios-location-spoofer.sgmodule" class="mt-2 w-full bg-gradient-to-r from-blue-500 to-sky-400 hover:from-blue-600 hover:to-sky-500 focus:ring-2 focus:ring-blue-300 focus:outline-none text-black font-semibold py-2 px-4 rounded-lg transition-all inline-flex items-center justify-center gap-2">
                                 <i data-feather="plus" class="w-5 h-5"></i>
                                 <span data-i18n="btn-open-sr">Mở trong ShadowRocket</span>
                             </a>
@@ -679,20 +679,22 @@
 
     <script>
         // Initialize AOS and Feather Icons
-        AOS.init();
-        feather.replace();
+        if (window.AOS) AOS.init();
+        if (window.feather) feather.replace();
 
         // Update current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
         // Copy to clipboard function
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                const successMsg = currentLang === 'en' ? i18n.en["toast-copied"] : 'Đã sao chép thành công';
-                showToast(successMsg);
-            }).catch(err => {
-                console.error('Lỗi khi sao chép / Error copying: ', err);
-            });
+        async function copyToClipboard(text) {
+            try {
+                if (!navigator.clipboard) throw new Error('Clipboard unavailable');
+                await navigator.clipboard.writeText(text);
+                showToast('Đã sao chép thành công');
+            } catch (error) {
+                showToast('Không thể tự sao chép. Hãy sao chép liên kết bên dưới.');
+                window.prompt('Sao chép liên kết này:', text);
+            }
         }
 
         // Toast helper

@@ -1,3 +1,8 @@
+(function () {
+  var result = {};
+  try { result = rewrite(); } catch (error) { /* Preserve original response. */ }
+  $done(result);
+  function rewrite() {
 // ============================================================
 // Locket Remote Config Rewrite
 // Endpoint: firebaseremoteconfig.googleapis.com
@@ -8,8 +13,10 @@
 var ua = $request.headers["User-Agent"] || $request.headers["user-agent"] || "";
 var obj = JSON.parse($response.body);
 
+if (!ua.includes("Locket") || !obj || typeof obj !== "object" || Array.isArray(obj)) return {};
 if (ua.includes("Locket")) {
     obj.Attention = "Chúc mừng bạn! Vui lòng không bán hoặc chia sẻ cho người khác!";
+    if (obj.entries && (typeof obj.entries !== "object" || Array.isArray(obj.entries))) return {};
     obj.entries = obj.entries || {};
 
     // ============================================================
@@ -571,7 +578,7 @@ if (ua.includes("Locket")) {
                 ]
             },
             {
-                section: "🎨 Decorative by Duy Vinh",
+                section: "🎨 Decorative by ifywnx",
                 items: [
                     {
                         overlay_id: "caption:ifywnx",
@@ -1276,7 +1283,7 @@ if (ua.includes("Locket")) {
                         }
                     },
                     {
-                        overlay_id: "caption:ua_alo",
+                        overlay_id: "caption:ua_alo_question",
                         source: "remote",
                         caption: {
                             background: { colors: ["#9C27B0", "#7B1FA2"] },
@@ -1760,4 +1767,6 @@ if (ua.includes("Locket")) {
     });
 }
 
-$done({ body: JSON.stringify(obj) });
+return { body: JSON.stringify(obj) };
+  }
+})();
