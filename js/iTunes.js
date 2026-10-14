@@ -2,7 +2,7 @@
 
 Tên dự án: Bộ sưu tập mở khóa phim bộ iTunes
 Ngày cập nhật: 14/06/2026
-Tác giả kịch bản: @duyvinh09
+Tác giả kịch bản: @ifywnx
 Kênh Telegram: https://t.me/tienich
 Lưu ý: ⚠️Chỉ để tham khảo, 🈲nghiêm cấm sao chép và bán!
 Hướng dẫn sử dụng: Nếu kịch bản không hoạt động, vui lòng kiểm tra xung đột kịch bản trước.
@@ -12,7 +12,7 @@ Giải pháp: Chọn một trong các phương pháp sau: [MITM][Script][Công c
 **************************************
 
 [rewrite_local]
-^https?:\/\/buy\.itunes\.apple\.com\/verifyReceipt$ url script-response-body https://raw.githubusercontent.com/duyvinh09/Module_IOS/refs/heads/main/js/iTunes.js
+^https?:\/\/buy\.itunes\.apple\.com\/verifyReceipt$ url script-response-body https://raw.githubusercontent.com/ifywnx/locket-gold-ywnx/refs/heads/main/js/iTunes.js
 
 [mitm]
 hostname = buy.itunes.apple.com
@@ -443,7 +443,7 @@ if (!anchor) {
       "auto_renew_product_id": fallbackId,
       "auto_renew_status": "1"
     }];
-    console.log('❌ Không tìm thấy gói đăng ký hợp lệ; gói thay thế đang được sử dụng.🎉🎉🎉\nKênh chia sẻ của Duy Vinh: https://t.me/duyvinh09');
+    console.log('❌ Không tìm thấy gói đăng ký hợp lệ; gói thay thế đang được sử dụng.🎉🎉🎉\nKênh chia sẻ của Duy Vinh: https://t.me/ifywnx');
   }
 }
 

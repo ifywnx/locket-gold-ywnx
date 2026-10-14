@@ -1,4 +1,4 @@
-var duyvinh09 = JSON.parse($response.body);
+var ifywnx = JSON.parse($response.body);
 const ua = $request.headers["User-Agent"] || $request.headers["user-agent"];
 const times = Date.now();
 
@@ -9,7 +9,7 @@ const list = {
 
 for (const key of Object.keys(list)) {
     if (new RegExp(`^${key}`, "i").test(ua)) {
-        duyvinh09.result = {
+        ifywnx.result = {
         "products": [
             {
                 "managed": true,
@@ -35,4 +35,4 @@ for (const key of Object.keys(list)) {
     }
 }
 
-$done({ body: JSON.stringify(duyvinh09) });
+$done({ body: JSON.stringify(ifywnx) });

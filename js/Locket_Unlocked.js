@@ -2,7 +2,7 @@
 // Locket Remote Config Rewrite
 // Endpoint: firebaseremoteconfig.googleapis.com
 // Dùng cho: Loon / Quantumult X / Surge / Shadowrocket
-// Tác giả: @duyvinh09
+// Tác giả: @ifywnx
 // ============================================================
 
 var ua = $request.headers["User-Agent"] || $request.headers["user-agent"] || "";
@@ -574,12 +574,12 @@ if (ua.includes("Locket")) {
                 section: "🎨 Decorative by Duy Vinh",
                 items: [
                     {
-                        overlay_id: "caption:duyvinh09",
+                        overlay_id: "caption:ifywnx",
                         source: "remote",
                         caption: {
                             background: { colors: ["#B8E7FF", "#A8F5D0", "#DCCBFF"] },
                             max_lines: 1,
-                            text: "💻 duyvinh09",
+                            text: "💻 ifywnx",
                             text_color: "#183153",
                             type: "static_content"
                         }
