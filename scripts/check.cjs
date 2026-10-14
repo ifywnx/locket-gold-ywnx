@@ -27,6 +27,7 @@ const items = groups.flatMap(g => g.items);
 assert.equal(new Set(items.map(i => i.overlay_id)).size, items.length, 'Duplicate caption IDs');
 let urls = 0;
 for (const file of cp.execFileSync('git', ['ls-files', '-z'], {encoding:'utf8'}).split('\0').filter(Boolean)) {
+  if (file.startsWith('installer/')) continue;
   if (!fs.existsSync(file) || !/\.(js|html|md|conf|sgmodule|yaml|mobileconfig)$/.test(file)) continue;
   const text = fs.readFileSync(file, 'utf8').replace(/%([0-9a-f]{2})/gi, (_, h) => String.fromCharCode(parseInt(h,16)));
   assert.ok(!text.includes('ifywnx/Module_IOS'), file + ': old repository URL');

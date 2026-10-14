@@ -4,6 +4,24 @@ Bộ cấu hình và script dành cho các ứng dụng proxy trên iOS. Repo c�
 
 Các script sửa phản hồi trên thiết bị; chúng không tạo giao dịch mua hay thay đổi quyền thuê bao trên máy chủ. Tính năng thực tế phụ thuộc phiên bản ứng dụng và cấu trúc phản hồi. Chưa kiểm thử bản cập nhật này trực tiếp trên iPhone.
 
+## Cài đặt bằng mã truy cập (repo private)
+
+**Trang dành cho người dùng:** https://ifywnx-locket-install.sharpheron32.chatgpt.site
+
+**Quản trị:** https://ifywnx-locket-install.sharpheron32.chatgpt.site/admin
+
+1. Chủ site mở trang quản trị và đăng nhập ChatGPT bằng tài khoản tạo site.
+2. Nhập tên người nhận, thời hạn 1–365 ngày và bấm **Tạo mã**.
+3. Sao chép mã ngay (chỉ hiển thị một lần), gửi riêng mã và link trang chủ cho người nhận.
+4. Người nhận nhập mã → **Tiếp tục** → **Mở Shadowrocket để cài** → làm theo hướng dẫn chứng chỉ.
+5. Muốn chặn tải/cập nhật, chọn **Thu hồi mã** trên trang quản trị.
+
+Mã/link có thể bị chia sẻ lại và không ràng buộc thiết bị. Thu hồi không gỡ bản script đã tải hoặc cache. Trang web công khai chỉ chứa hướng dẫn; module/script được máy chủ kiểm tra mã trước mỗi lượt tải. Repo GitHub vẫn private.
+
+Source web ở `installer/`. Script trên web là bản snapshot; sửa script ở repo cần cập nhật snapshot và triển khai web lại. Xem `installer/README.md` để bảo trì.
+
+**Các URL raw GitHub bên dưới là tài liệu dành cho chủ repo, không dùng để cài cho người nhận khi repo private.** Dùng trang nhập mã ở trên.
+
 ## 1. Chọn đúng cấu hình
 
 | Nhu cầu | Tệp |
