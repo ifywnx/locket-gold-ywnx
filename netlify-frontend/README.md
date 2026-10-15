@@ -13,7 +13,7 @@ Chỉ hiện một module Locket; không phân phối DNS kế thừa, All Apps,
 4. Sau khi backend cập nhật, cập nhật script/module trong Shadowrocket, ngắt/bật kết nối và mở lại Locket. Không cần xoá ứng dụng.
 
 ## Trạng thái triển khai
-Gói Netlify đã thu gọn. Backend agilechub512 chưa được triển khai vì kết nối Sites đang ở tài khoản khác. Trước khi backend được cập nhật, liên kết vẫn tải script cũ và các URL cũ có thể vẫn tải được. Upload Netlify không thay thế việc cập nhật backend. Các file tổng hợp trong repo chỉ giữ để tham khảo, không nằm trong allowlist backend mới.
+Backend agilechub512 đã triển khai bản 2 ngày 15/10/2026: chỉ phục vụ Locket, bỏ DNS/All Apps/GPS và sửa popup tên cũ. Cơ sở dữ liệu mã giữ nguyên. ZIP Netlify mới có bản sửa thông báo lỗi; cần upload lại vào site ifywnx hiện có. Các file tổng hợp còn trong repo chỉ dùng tham khảo.
 
 ## DNS riêng
 Bản này không cấu hình DNS: máy tiếp tục dùng DNS từ mạng hoặc cài đặt hiện có. Không đổi DNS không có nghĩa nhà cung cấp mạng không thấy truy vấn.

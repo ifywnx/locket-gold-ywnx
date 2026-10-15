@@ -1,4 +1,4 @@
-> Bản hiện tại: Locket riêng, không phân phối DNS kế thừa, All Apps, GPS hoặc Sub-Store. Xem `netlify-frontend/README.md` để cài mới và gỡ các mục cũ. Backend chưa triển khai cho đến khi kết nối đúng tài khoản Sites. Các file tổng hợp còn trong repo là tài liệu cũ, không phải bộ cài được khuyến nghị.
+> Bản hiện tại: Locket riêng, không phân phối DNS kế thừa, All Apps, GPS hoặc Sub-Store. Xem `netlify-frontend/README.md` để cài mới và gỡ các mục cũ. Backend đã triển khai bản 2 ngày 15/10/2026. Các file tổng hợp còn trong repo là tài liệu cũ, không phải bộ cài được khuyến nghị.
 
 # Locket • ifywnx
 
