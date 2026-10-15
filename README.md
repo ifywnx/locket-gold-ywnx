@@ -1,3 +1,5 @@
+> Bản hiện tại: Locket riêng, không phân phối DNS kế thừa, All Apps, GPS hoặc Sub-Store. Xem `netlify-frontend/README.md` để cài mới và gỡ các mục cũ. Backend chưa triển khai cho đến khi kết nối đúng tài khoản Sites. Các file tổng hợp còn trong repo là tài liệu cũ, không phải bộ cài được khuyến nghị.
+
 # Locket • ifywnx
 
 Bộ cấu hình và script dành cho các ứng dụng proxy trên iOS. Repo có module Locket riêng, cấu hình All In One và các module ứng dụng khác.

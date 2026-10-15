@@ -62,8 +62,7 @@ if (ua.includes("Locket")) {
             feature_set: [
                 {
                     title: "Chào mừng đến với ifywnx ✨",
-                    body: "Chúc bạn chia sẻ thật nhiều khoảnh khắc đẹp 💛",
-                    imageURL: "https://i.ibb.co/gZ6HkyWT/L-n-Gold-R-i.png"
+                    body: "Chúc bạn chia sẻ thật nhiều khoảnh khắc đẹp 💛"
                 }
             ],
             primary_button_title: "Xong",
@@ -75,8 +74,6 @@ if (ua.includes("Locket")) {
         android_subscribe_gold_button_enabled: "false",
         profile_badge_visible: "true",
         lunar_new_year_app_icon_enabled: "true",
-        settings_instagram_url: "https://www.instagram.com/dvinh.09/",
-        settings_tiktok_url: "https://tiktok.com/@ifywnx"
     });
 
     // ============================================================
@@ -293,14 +290,6 @@ if (ua.includes("Locket")) {
         widget_stale_state_enabled: "false",
         widget_last_sent_indicator: "false",
         widget_sync_token_reload_mode: "clearTokenNever",
-        widget_frame_event: JSON.stringify({
-            uid: "midautumn_2026",
-            url: "https://i.ibb.co/1Yt1Dzzy/Shin-chan-1.png",
-            use_local_time_zone: true,
-            placement: "below",
-            start_at: "2020-01-01T00:00:00",
-            end_at: "2099-12-31T23:59:59"
-        }),
         live_activity_onboarding: "true",
         live_activity_onboarding_variant: "friending",
         register_live_activity_push_to_start_token: "true",

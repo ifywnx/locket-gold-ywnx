@@ -1,10 +1,5 @@
-'use client';
-import {useState} from 'react';
-const options=[
- ['ifywnx-Locket-Captions.sgmodule','Locket + Caption','Chỉ dùng Locket. Không bật cùng bộ All Apps.'],
- ['ifywnx-AllApps-Config.conf','Cấu hình tổng hợp','Cấu hình đầy đủ nhiều ứng dụng. Sao lưu cấu hình hiện tại; không cần bật thêm module tổng hợp trùng quy tắc.'],
- ['ifywnx-AllApps-Module.sgmodule','Module tổng hợp','Thêm vào cấu hình hiện có. Chọn thay cho module Locket riêng hoặc cấu hình tổng hợp.'],
- ['ifywnx-GPS-Module.sgmodule','GPS — tuỳ chọn','Thay đổi phản hồi định vị. Mặc định tọa độ 35.6586, 139.7454 (Tokyo); không tự nhận vị trí bạn muốn. Có thể ảnh hưởng ứng dụng khác.'],
- ['ifywnx-Locket-DNS.mobileconfig','DNS Locket — tuỳ chọn','Hồ sơ DNS của mục “config duy trì” trên trang mẫu. Chuyển DNS sang my.ublockdns.com; nhà cung cấp có thể nhận truy vấn DNS. Không bảo đảm giữ Gold và không cần cho caption.']
-];
-export default function Downloads({base}:{base:string}){const [dns,setDns]=useState(false);return <>{options.map(([file,title,description])=>{const url=base+file;const profile=file.endsWith('.mobileconfig');const href=profile?url:file.endsWith('.conf')?'shadowrocket://config/add/'+url:'shadowrocket://install?module='+encodeURIComponent(url);return <article key={file} style={{borderTop:'1px solid #dde5f0',padding:'22px 0'}}><h3>{title}</h3><code style={{fontSize:12,overflowWrap:'anywhere'}}>{file}</code><p>{description}</p>{profile&&<><label style={{display:'flex',gap:10,alignItems:'center'}}><input style={{width:20,margin:0}} type="checkbox" checked={dns} onChange={e=>setDns(e.target.checked)}/>Tôi muốn đổi DNS trên thiết bị</label><p>Tải bằng Safari → Cài đặt → Cài đặt chung → VPN & Quản lý thiết bị → chọn hồ sơ → Cài đặt. Gỡ tại cùng mục khi không muốn dùng; tắt Shadowrocket không tự gỡ DNS.</p></>}{!profile||dns?<><a className="button" href={href}>{profile?'Tải hồ sơ DNS':'Mở Shadowrocket để cài'} ↗</a><details><summary>Sao chép liên kết thủ công</summary><input aria-label={'Link '+title} value={url} readOnly onFocus={e=>e.target.select()}/><small>Liên kết chứa mã riêng. Không chia sẻ lại.</small></details></>:<button disabled>Chọn xác nhận bên trên để tải DNS</button>}</article>})}</>}
+ 'use client';
+export default function Downloads({base}:{base:string}) {
+ const url=base+'ifywnx-Locket-Captions.sgmodule';
+ return <article><h3>Locket · ifywnx</h3><p>Bản Locket riêng, không kèm DNS, GPS hoặc module tổng hợp.</p><a className="button" href={'shadowrocket://install?module='+encodeURIComponent(url)}>Mở Shadowrocket để cài ↗</a><details><summary>Sao chép liên kết thủ công</summary><input aria-label="Liên kết module Locket" readOnly value={url} onFocus={e=>e.target.select()}/><small>Liên kết chứa mã riêng. Không chia sẻ lại.</small></details><p className="notice">Nếu đã cài bản cũ, gỡ hồ sơ DNS cũ và tắt All Apps, GPS, Sub-Store. Cài module mới không tự gỡ các thành phần đó.</p></article>;
+}
