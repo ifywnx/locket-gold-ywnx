@@ -1,3 +1,5 @@
+> Cập nhật 15/10/2026: bộ cài đã quay về mốc trước thay DNS riêng, có DNS bên thứ ba và popup ifywnx. Thanh toán payOS 39.000đ cấp mã kích hoạt một lần; xem [hướng dẫn hiện tại](PAYOS.md). Những mô tả Locket-only / NextDNS ở phần lịch sử bên dưới không mô tả bộ cài đang phát hành.
+
 > Bộ cài hiện tại đã khôi phục All Apps và GPS, bỏ Sub-Store tự tải bên ngoài; DNS chuyển sang NextDNS của bạn. Xem `netlify-frontend/README.md`.
 
 # Locket • ifywnx

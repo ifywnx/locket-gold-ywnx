@@ -40,12 +40,11 @@ console.log(`PASS: runtime fallback, single completion, unrelated app passthroug
 const assetsText = fs.readFileSync('installer/lib/private-assets.ts','utf8');
 const assets = JSON.parse(assetsText.slice(assetsText.indexOf('=')+1).trim().replace(/;$/, ''));
 for (const [name, content] of Object.entries(assets)) {
- assert.ok(!content.includes('my.ublockdns.com'),name);
- if(name.endsWith('.sgmodule')||name.endsWith('.conf')) assert.ok(!content.includes('github.com/sub-store-org/'),name);
  if(name.endsWith('.js')) assert.equal(content,fs.readFileSync('js/'+name,'utf8'));
 }
 for(const name of ['Locket_ifywnx.js','Locket_Unlocked.js','deleteHeader.js']) assert.ok(!/\$httpClient|\$task|fetch\(|XMLHttpRequest/.test(assets[name]));
-assert.ok(!assets['ifywnx-Locket-DNS.mobileconfig']);
-assert.equal(run('js/deleteHeader.js','{}','AnotherApp').headers,undefined);
+assert.ok(assets['ifywnx-Locket-DNS.mobileconfig'].includes('https://my.ublockdns.com/z451ak95'));
+assert.ok(assets['Locket_Unlocked.js'].includes('Chào mừng đến với ifywnx'));
+assert.ok(!assets['Locket_Unlocked.js'].includes('Nhớ follow tiktok @duyvinh.09'));
 assert.ok(run('js/deleteHeader.js','{}','Locket').headers);
-console.log('PASS: restricted served assets, source parity, no outbound HTTP APIs in Locket scripts, unrelated headers untouched.');
+console.log('PASS: legacy DNS restored, popup renamed, source parity, no outbound HTTP APIs in Locket scripts.');
