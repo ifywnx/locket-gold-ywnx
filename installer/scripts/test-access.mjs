@@ -9,7 +9,9 @@ const a=await post('/api/access',{code:'a'.repeat(64)});assert.equal(a.status,20
 assert.equal((await fetch(origin+'/download/'+'a'.repeat(64)+'/private-assets.ts')).status,404);
 assert.equal((await post('/api/access',null)).status,400);
 console.log('PASS: access verification, denied admin, expiry, revocation, protected downloads, URL rewriting, allowlist, malformed JSON.');
-for(const file of ['ifywnx-AllApps-Config.conf','ifywnx-AllApps-Module.sgmodule','ifywnx-GPS-Module.sgmodule','ifywnx-Locket-DNS.mobileconfig','Snow.js']) {
+for(const file of ['ifywnx-Locket-DNS.mobileconfig','private-assets.ts']) {
  assert.equal((await fetch(origin+'/download/'+'a'.repeat(64)+'/'+file)).status,404);
 }
 console.log('PASS: legacy DNS, All Apps, GPS and unrelated scripts no longer served.');
+
+for(const file of ['ifywnx-AllApps-Config.conf','ifywnx-AllApps-Module.sgmodule','ifywnx-GPS-Module.sgmodule']) assert.equal((await fetch(origin+'/download/'+'a'.repeat(64)+'/'+file)).status,200);

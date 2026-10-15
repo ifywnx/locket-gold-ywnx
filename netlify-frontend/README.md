@@ -1,27 +1,12 @@
-# ifywnx — bản Locket riêng
+# Bộ cài ifywnx đầy đủ
 
-## Đưa web lên Netlify
-Giải nén ifywnx-netlify.zip, kéo cả thư mục ifywnx-netlify vào https://app.netlify.com/drop . Giữ đủ index.html, _redirects và _headers. Dùng mã đang có tại https://ifywnx-install.agilechub512.chatgpt.site/admin .
+Có 5 lựa chọn: Locket + Caption, All Apps Config, All Apps Module, GPS và NextDNS tuỳ chọn. Chỉ chọn một bộ chính, không bật các bộ trùng quy tắc.
 
-## Nội dung đã thay đổi
-Chỉ hiện một module Locket; không phân phối DNS kế thừa, All Apps, GPS hoặc Sub-Store. Nguồn backend mới chỉ cho tải module Locket và ba script cần thiết. Bỏ ảnh i.ibb.co và liên kết mạng xã hội được chèn bởi script. Header rewrite chỉ chạy với User-Agent Locket. MITM vẫn có hai hostname RevenueCat và Firebase Remote Config; đây là hostname dùng chung, không phải bảo đảm cô lập tuyệt đối theo ứng dụng.
+All Apps đã bỏ Sub-Store và tác vụ tự tải script từ bên ngoài. Các script được phục vụ từ snapshot trong backend của bạn; bản gốc vẫn có trong repo. Đây không phải chứng nhận an toàn toàn bộ script: YouTube có thể gọi dịch vụ dịch Google; GPS có thể gọi dịch vụ bản đồ/độ cao tuỳ chế độ. GPS mặc định Tokyo. Không thay đổi DNS hoặc proxy của thiết bị bằng việc chỉ truy cập web.
 
-## Quan trọng: chuyển từ bản cũ
-1. Gỡ hồ sơ DNS cũ trong Cài đặt → Cài đặt chung → VPN & Quản lý thiết bị. Không cần gỡ chứng chỉ Shadowrocket tự tạo nếu vẫn dùng.
-2. Tắt module All Apps, GPS và Sub-Store; nếu dùng cấu hình tổng hợp cũ, chuyển sang cấu hình cơ bản của bạn không có các script đó.
-3. Cài module Locket mới; giữ Giải mã HTTPS và chứng chỉ tự tạo đã được tin cậy.
-4. Sau khi backend cập nhật, cập nhật script/module trong Shadowrocket, ngắt/bật kết nối và mở lại Locket. Không cần xoá ứng dụng.
+DNS cũ my.ublockdns.com không được phục vụ. NextDNS dcc5ee do bạn quản lý, dùng chung hạn mức và bộ lọc; không bảo đảm giữ Gold. Người dùng cần tự gỡ hồ sơ DNS cũ. Nút NextDNS mở trình tạo chính thức, không bật Trust NextDNS Root CA.
 
-## Trạng thái triển khai
-Backend agilechub512 đã triển khai bản 2 ngày 15/10/2026: chỉ phục vụ Locket, bỏ DNS/All Apps/GPS và sửa popup tên cũ. Cơ sở dữ liệu mã giữ nguyên. ZIP Netlify mới có bản sửa thông báo lỗi; cần upload lại vào site ifywnx hiện có. Các file tổng hợp còn trong repo chỉ dùng tham khảo.
+## Upload Netlify
+Giải nén ifywnx-netlify.zip và tải cả thư mục vào đúng dự án ifywnx đang có. Giữ index.html, _redirects, _headers. Không tạo site mới. Backend cấp mã: https://ifywnx-install.agilechub512.chatgpt.site/admin .
 
-## DNS riêng
-Bản này không cấu hình DNS: máy tiếp tục dùng DNS từ mạng hoặc cài đặt hiện có. Không đổi DNS không có nghĩa nhà cung cấp mạng không thấy truy vấn.
-Có thể tự vận hành AdGuard Home trên máy chủ do bạn quản lý, hoặc tạo cấu hình DNS trong tài khoản riêng tại nhà cung cấp. Cách thứ hai vẫn phụ thuộc nhà cung cấp. Cần máy chủ/tài khoản và endpoint thật trước khi tạo hồ sơ cài đặt; không có DNS riêng hoạt động trong gói này. Netlify tĩnh không phải máy chủ DNS.
-Tài liệu: https://adguard-dns.io/kb/adguard-home/getting-started/
-
-## Username
-Username chỉ là định danh công khai; không thay thế đăng nhập, mã truy cập, chứng chỉ hay cài module. Không có tích hợp API chính thức được thiết lập để thực hiện việc đó. Trang này không yêu cầu mật khẩu Locket.
-
-## Kiểm tra sau triển khai
-Thử mã hợp lệ, mã hết hạn và mã bị thu hồi; mã hợp lệ chỉ hiện một module. Kiểm tra tải DNS/All Apps cũ trả 404 sau khi backend được cập nhật. Chưa kiểm thử trực tiếp trên iPhone; không bảo đảm quyền Gold hay mọi tính năng máy chủ. Mã thu hồi không xoá được file đã tải trước đó.
+Sau khi upload, thử mã hợp lệ, hết hạn, thu hồi; mã hợp lệ hiện bốn file Shadowrocket và mục NextDNS riêng. Chưa thử mọi ứng dụng trên iPhone. Cập nhật module/script để nhận thay đổi; không cần xoá Locket.
