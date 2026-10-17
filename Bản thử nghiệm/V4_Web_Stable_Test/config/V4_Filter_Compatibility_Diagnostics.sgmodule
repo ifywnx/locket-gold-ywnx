@@ -1,0 +1,11 @@
+#!name=ifywnx-V4-Filter-Compatibility
+#!desc=Read-only Locket camera filter catalog audit; does not unlock or modify filters
+# TEMPLATE: replace YOUR_PUBLIC_HTTPS_HOST with a real authorized HTTPS host.
+# Only run with the original V3 rewrite DISABLED, or it will inspect the modified V3 response.
+# Repo PRIVATE: raw GitHub URLs may not be fetched without authentication.
+
+[Script]
+v4_filter_compat = type=http-response, pattern=^https:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-4252a\/namespaces\/firebase:fetch(?:\?.*)?$, script-path=https://YOUR_PUBLIC_HTTPS_HOST/ifywnx-v4/scripts/Locket_V4_Filter_Compatibility_Diagnostics.js, requires-body=true, max-size=524288, timeout=30
+
+[MITM]
+hostname = %APPEND% firebaseremoteconfig.googleapis.com
