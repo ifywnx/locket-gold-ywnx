@@ -1,8 +1,10 @@
 #!name=ifywnx-Captions-Test
-#!desc=Isolated caption experiment; preserves server config; no purchase or entitlement changes
+#!desc=Thử nghiệm caption riêng; KHÔNG can thiệp quyền thuê bao
+# MẪU: thay YOUR_PUBLIC_HTTPS_HOST bằng máy chủ HTTPS truy cập được.
+# GitHub private không cung cấp link Raw công khai cho thiết bị chưa đăng nhập.
 
 [Script]
-locket_caption_test = type=http-response, pattern=^https:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-4252a\/.+, script-path=https://raw.githubusercontent.com/ifywnx/locket-gold-ywnx/main/B%E1%BA%A3n%20th%E1%BB%AD%20nghi%E1%BB%87m/2026-10-17/captions/Locket_Captions_Test.js, requires-body=true, max-size=-1, timeout=60
+locket_caption_test = type=http-response, pattern=^https:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-4252a\/namespaces\/firebase:fetch(?:\?.*)?$, script-path=https://YOUR_PUBLIC_HTTPS_HOST/ifywnx-tests/captions/Locket_Captions_Test.js, requires-body=true, max-size=524288, timeout=30
 
 [MITM]
 hostname = %APPEND% firebaseremoteconfig.googleapis.com
