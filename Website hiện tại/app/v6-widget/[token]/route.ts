@@ -89,8 +89,10 @@ code{background:#272e4c;border-radius:5px;padding:2px 5px;color:#deecff}
 </div>
 <p class="error" id="error" role="status"></p>
 <div class="actions">
-<a id="config" class="action" aria-disabled="true" href="#">Tải cấu hình chính .conf</a>
-<a id="module" class="action secondary" aria-disabled="true" href="#">Tải module .sgmodule</a>
+<a id="installConfig" class="action" aria-disabled="true" href="#">Cài Config vào Shadowrocket ↗</a>
+<a id="installModule" class="action secondary" aria-disabled="true" href="#">Cài Module vào Shadowrocket ↗</a>
+<a id="config" class="action secondary" aria-disabled="true" href="#">Tải file .conf</a>
+<a id="module" class="action secondary" aria-disabled="true" href="#">Tải file .sgmodule</a>
 </div>
 <p class="note">Hai cách cài trên thay thế nhau, không bật đồng thời. Nếu bạn có cấu hình Shadowrocket nền đã hỗ trợ script/MITM, dùng module. Nếu cần cấu hình độc lập, dùng .conf. DNS V6 tùy chọn: <a id="dns" style="color:#b1a6ff" href="#">Tải .mobileconfig</a>.</p>
 <p class="note">Tắt script Locket cũ trong khi thử V6 để tránh xử lý trùng. Không chia sẻ URL trang này vì link chứa mã truy cập của bạn.</p>
@@ -108,6 +110,8 @@ code{background:#272e4c;border-radius:5px;padding:2px 5px;color:#deecff}
   const error=document.getElementById('error');
   const config=document.getElementById('config');
   const module=document.getElementById('module');
+  const installConfig=document.getElementById('installConfig');
+  const installModule=document.getElementById('installModule');
   const dns=document.getElementById('dns');
   let theme='original';
   function validImage(s){
@@ -135,6 +139,10 @@ code{background:#272e4c;border-radius:5px;padding:2px 5px;color:#deecff}
       el.href=ok?base+file+'?'+q.toString():'#';
       el.setAttribute('aria-disabled',String(!ok));
     }
+    installConfig.href=ok?'shadowrocket://config/add/'+config.href:'#';
+    installModule.href=ok?'shadowrocket://install?module='+encodeURIComponent(module.href):'#';
+    installConfig.setAttribute('aria-disabled',String(!ok));
+    installModule.setAttribute('aria-disabled',String(!ok));
     dns.href=base+'ifywnx-Locket-DNS.mobileconfig';
   }
   buttons.forEach(b=>b.addEventListener('click',()=>{
