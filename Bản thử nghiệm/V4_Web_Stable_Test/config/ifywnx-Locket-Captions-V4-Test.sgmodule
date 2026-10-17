@@ -1,0 +1,11 @@
+#!name=ifywnx-Locket-V4-Filter-Audit
+#!desc=Chẩn đoán filter chỉ đọc — module V4 thử nghiệm độc lập
+# V4 THỬ NGHIỆM RIÊNG — không bao gồm RevenueCat / fake Gold
+# Cấu hình do website phát hành qua /test-download/<token>/.
+# KHÔNG bật cùng lúc với module Locket gốc; test 1 script mỗi lần.
+
+[Script]
+v4_test = type=http-response, pattern=^https:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-4252a\/namespaces\/firebase:fetch(?:\?.*)?$, script-path=__V4_TEST_BASE_URL__Locket_V4_Filter_Compatibility_Diagnostics.js, requires-body=true, max-size=524288, timeout=30
+
+[MITM]
+hostname = %APPEND% firebaseremoteconfig.googleapis.com
