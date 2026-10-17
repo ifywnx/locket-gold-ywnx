@@ -31,6 +31,20 @@ function render(session,packageId,demo=false){
  desc.textContent='Chỉ dùng một cách: Config hoặc Module. Không bật đồng thời cả hai bộ quy tắc Locket.';
  alternative.append(summary,desc,installLink(session,'ifywnx-Locket-Captions.sgmodule','Cài Module thay thế →'));
  $('cards').append(alternative);
+ // Optional V6 beta link is displayed ONLY after this user's access code was validated.
+ // Live V3 download links above are unchanged.
+ const beta=document.createElement('details');
+ const betaTitle=document.createElement('summary');
+ betaTitle.textContent='🧪 Thử nghiệm V6 · Chọn khung widget';
+ const betaText=document.createElement('p');
+ betaText.textContent='Chọn khung Shin-chan hoặc ảnh ImgBB riêng, 136 caption và popup tùy chọn. Đây là bản thử, chưa có xác nhận tính năng trên iPhone; không bật cùng bộ cài cũ và không bao gồm quyền Gold.';
+ const betaLink=document.createElement('a');
+ betaLink.className='button dark';
+ betaLink.textContent='Mở trang chọn khung V6 →';
+ betaLink.href=(cfg.backend||location.origin)+'/v6-widget/'+encodeURIComponent(session);
+ betaLink.referrerPolicy='no-referrer';
+ beta.append(betaTitle,betaText,betaLink);
+ $('cards').append(beta);
  $('downloads').scrollIntoView({behavior:'smooth'});
 }
 function prepareInstallation(){
