@@ -12,6 +12,8 @@
 | `popup/Locket_Popup_Test.js` | Thêm popup mẫu **chỉ khi server thiếu** popup | Chỉ `feature_discovery_popup_config` |
 | `camera/Camera_Filter_Diagnostics.js` | Kiểm tra trạng thái `camera_filter_config` | Không |
 | `diagnostics/Locket_Overlay_Diagnostics.js` | Thống kê số nhóm/mục caption, không đọc nội dung riêng tư vào log | Không |
+| `revenuecat/RevenueCat_Readonly_Diagnostics.js` | Chỉ kiểm tra kiểu cấu trúc subscriber/entitlement, không thay đổi quyền | Không |
+| `headers/Header_Readonly_Diagnostics.js` | Chỉ ghi nhận sự tồn tại của header ETag, không xóa header | Không |
 | `*/ifywnx-*.sgmodule` | Module riêng cho từng trường hợp | Không, chỉ gọi script |
 | `config/ifywnx-Locket-Test.conf` | Mẫu cấu hình thử cho Shadowrocket | Chỉ gọi 1 script |
 | `config/ifywnx-Locket-Test.sgmodule` | Mẫu module thử | Chỉ gọi 1 script |
