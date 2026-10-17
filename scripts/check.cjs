@@ -27,7 +27,8 @@ const items = groups.flatMap(g => g.items);
 assert.equal(new Set(items.map(i => i.overlay_id)).size, items.length, 'Duplicate caption IDs');
 let urls = 0;
 for (const file of cp.execFileSync('git', ['ls-files', '-z'], {encoding:'utf8'}).split('\0').filter(Boolean)) {
-  if (file.startsWith('installer/')) continue;
+  // Archived source retains upstream URLs; website downloads are resolved by its authenticated server.
+  if (['installer/', 'Mã nguồn đã clone/', 'Các ứng dụng khác/', 'Website hiện tại/', 'Bộ cài gốc/'].some(prefix=>file.startsWith(prefix))) continue;
   if (!fs.existsSync(file) || !/\.(js|html|md|conf|sgmodule|yaml|mobileconfig)$/.test(file)) continue;
   const text = fs.readFileSync(file, 'utf8').replace(/%([0-9a-f]{2})/gi, (_, h) => String.fromCharCode(parseInt(h,16)));
   assert.ok(!text.includes('ifywnx/Module_IOS'), file + ': old repository URL');
@@ -48,3 +49,15 @@ assert.ok(assets['Locket_Unlocked.js'].includes('Chào mừng đến với ifywn
 assert.ok(!assets['Locket_Unlocked.js'].includes('Nhớ follow tiktok @duyvinh.09'));
 assert.ok(run('js/deleteHeader.js','{}','Locket').headers);
 console.log('PASS: legacy DNS restored, popup renamed, source parity, no outbound HTTP APIs in Locket scripts.');
+
+// Verify exported install files against the current website snapshot, allowing trailing whitespace normalization.
+const currentText=fs.readFileSync('Website hiện tại/lib/private-assets.ts','utf8');
+const currentAssets=JSON.parse(currentText.slice(currentText.indexOf('=')+1).trim().replace(/;$/, ''));
+const normalize=s=>s.split(/\r?\n/).map(line=>line.trimEnd()).join('\n').trimEnd();
+for(const [name,content] of Object.entries(currentAssets)) {
+ assert.equal(normalize(fs.readFileSync('Bộ cài gốc/'+name,'utf8')),normalize(content),name+': snapshot mismatch');
+ for(const match of content.matchAll(/https:\/\/raw\.githubusercontent\.com\/ifywnx\/locket-gold-ywnx\/(?:refs\/heads\/)?main\/(?:js|modules|downloads)\/([^\s"'<>),`]+)/g)) {
+  assert.ok(Object.hasOwn(currentAssets,match[1]),name+': missing authenticated asset '+match[1]);
+ }
+}
+console.log('PASS: current install exports match website assets and authenticated download targets.');
