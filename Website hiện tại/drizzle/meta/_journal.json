@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1791992448319,
+      "tag": "0000_colorful_trish_tilby",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1792044498221,
+      "tag": "0001_left_master_chief",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1792045091155,
+      "tag": "0002_payment_account",
+      "breakpoints": true
+    }
+  ]
+}

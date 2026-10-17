@@ -1,3 +1,18 @@
+# Mã nguồn ifywnx
+
+Cập nhật cấu trúc ngày 17/10/2026.
+
+| Thư mục | Nội dung |
+|---|---|
+| [Bộ cài gốc](<Bộ cài gốc/>) | Bộ cài hiện tại và DNS cũ để khôi phục |
+| [Mã nguồn đã clone](<Mã nguồn đã clone/>) | Snapshot gốc Module_IOS, có ghi nguồn |
+| [Website hiện tại](<Website hiện tại/>) | Mã nguồn bản đang chạy trên Sites |
+| [Các ứng dụng khác](<Các ứng dụng khác/>) | Script/module ngoài Locket, lưu riêng |
+
+Giữ các đường dẫn cũ ở gốc để không làm hỏng liên kết đã phát hành. Các thư mục installer/netlify-frontend ở gốc là bản cũ; dùng **Website hiện tại** để đọc mã web mới. Repo vẫn riêng tư.
+
+<details><summary>Tài liệu cũ — chỉ dùng tham khảo lịch sử</summary>
+
 > Cập nhật 15/10/2026: bộ cài đã quay về mốc trước thay DNS riêng, có DNS bên thứ ba và popup ifywnx. Thanh toán payOS 39.000đ cấp mã kích hoạt một lần; xem [hướng dẫn hiện tại](PAYOS.md). Những mô tả Locket-only / NextDNS ở phần lịch sử bên dưới không mô tả bộ cài đang phát hành.
 
 > Bộ cài hiện tại đã khôi phục All Apps và GPS, bỏ Sub-Store tự tải bên ngoài; DNS chuyển sang NextDNS của bạn. Xem `netlify-frontend/README.md`.
@@ -155,3 +170,5 @@ Hồ sơ DNS dùng `https://my.ublockdns.com/z451ak95`, có thể áp dụng ngo
 Các script Sub-Store bên ngoài trong All Apps vẫn dùng nguồn công khai gốc, không chứa mã truy cập riêng. Các script nội bộ đều đi qua endpoint kiểm tra mã.
 
 Web đã được dựng lại dưới tài khoản mới; cần tạo mã mới tại /admin. Site cũ không bị xoá.
+
+</details>
