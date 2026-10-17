@@ -1,0 +1,10 @@
+#!name=ifywnx-Locket-Captions-V6-Test
+#!desc=Chọn chủ đề widget trên website, thêm caption và popup tùy chọn
+# Module sử dụng với cấu hình nền tương thích của Shadowrocket.
+# KHÔNG bật cùng lúc với .conf V6 và các module Locket cũ.
+
+[Script]
+v6_creative = type=http-response, pattern=^https:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-4252a\/namespaces\/firebase:fetch(?:\?.*)?$, script-path=__V6_SCRIPT_URL__, requires-body=true, max-size=524288, timeout=30
+
+[MITM]
+hostname = %APPEND% firebaseremoteconfig.googleapis.com
