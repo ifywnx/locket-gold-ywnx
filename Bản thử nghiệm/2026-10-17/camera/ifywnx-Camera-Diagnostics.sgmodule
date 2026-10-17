@@ -1,0 +1,11 @@
+#!name=ifywnx-Camera-Diagnostics
+#!desc=Thử nghiệm độc lập: Camera-Diagnostics. KHÔNG can thiệp thuê bao.
+# Thay YOUR_PUBLIC_HTTPS_HOST bằng nguồn HTTPS do bạn kiểm soát.
+# Kho GitHub hiện ở chế độ PRIVATE; link raw.github không truy cập được từ iPhone nếu thiếu xác thực.
+# Không bật cùng lúc với module cũ hoặc nhiều module thử nghiệm cùng endpoint.
+
+[Script]
+locket_camera_test = type=http-response, pattern=^https:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-4252a\/namespaces\/firebase:fetch(?:\?.*)?$, script-path=https://YOUR_PUBLIC_HTTPS_HOST/ifywnx-tests/camera/Camera_Filter_Diagnostics.js, requires-body=true, max-size=524288, timeout=30
+
+[MITM]
+hostname = %APPEND% firebaseremoteconfig.googleapis.com
