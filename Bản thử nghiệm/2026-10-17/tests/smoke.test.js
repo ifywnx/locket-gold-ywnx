@@ -49,7 +49,9 @@ const original = () => ({
 const diagnosticScripts = [
   "core/Locket_Core_Diagnostics.js",
   "camera/Camera_Filter_Diagnostics.js",
-  "diagnostics/Locket_Overlay_Diagnostics.js"
+  "diagnostics/Locket_Overlay_Diagnostics.js",
+  "revenuecat/RevenueCat_Readonly_Diagnostics.js",
+  "headers/Header_Readonly_Diagnostics.js"
 ];
 
 for (const f of diagnosticScripts) {
