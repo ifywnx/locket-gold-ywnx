@@ -57,6 +57,8 @@ small{color:#a8b1ce}
 .panel{border:1px solid #303757;background:#151b34;border-radius:17px;padding:18px;margin-bottom:14px}
 label{display:block;font-weight:700;margin-bottom:8px}
 input[type=url]{width:100%;padding:15px 13px;font-size:15px;border-radius:11px;border:1px solid #51597f;color:#fff;background:#0b1023}
+#imagePreview{display:block;width:150px;max-height:180px;object-fit:contain;border:1px solid #51597f;border-radius:12px;background:#252c46;margin-top:13px}
+#imagePreview[hidden]{display:none}
 .option{display:flex;gap:10px;align-items:center;color:#e6e6f9}
 .option input{width:20px;height:20px}
 .actions{display:grid;grid-template-columns:1fr;gap:11px}
@@ -79,6 +81,7 @@ code{background:#272e4c;border-radius:5px;padding:2px 5px;color:#deecff}
 <div class="panel" id="imagePanel" hidden>
 <label for="image">URL ảnh PNG/JPG/WebP trên ImgBB</label>
 <input id="image" type="url" autocomplete="off" spellcheck="false" placeholder="https://i.ibb.co/.../khung-cua-ban.png" maxlength="512">
+<img id="imagePreview" hidden alt="Xem trước khung widget bạn chọn" referrerpolicy="no-referrer">
 <p class="note">Bạn cần tự tải ảnh lên ImgBB rồi sao chép <strong>Direct Link</strong> bắt đầu bằng <code>https://i.ibb.co/</code>. Chỉ dùng ảnh bạn có quyền sử dụng. Các chủ đề Capybara, Chihuahua, Kitty và Meme hiện chưa có ảnh mặc định.</p>
 </div>
 <div class="panel">
@@ -100,6 +103,7 @@ code{background:#272e4c;border-radius:5px;padding:2px 5px;color:#deecff}
   const buttons=Array.from(document.querySelectorAll('.theme'));
   const input=document.getElementById('image');
   const panel=document.getElementById('imagePanel');
+  const imagePreview=document.getElementById('imagePreview');
   const popup=document.getElementById('popup');
   const error=document.getElementById('error');
   const config=document.getElementById('config');
@@ -121,6 +125,9 @@ code{background:#272e4c;border-radius:5px;padding:2px 5px;color:#deecff}
     panel.hidden=!custom;
     const ok=!custom||validImage(input.value.trim());
     error.textContent=ok?'':'Hãy nhập Direct Link ảnh hợp lệ từ i.ibb.co (.png, .jpg, .webp).';
+    imagePreview.hidden=!custom||!ok;
+    if(custom&&ok)imagePreview.src=input.value.trim();
+    else imagePreview.removeAttribute('src');
     const q=new URLSearchParams({theme});
     if(custom&&ok)q.set('image',input.value.trim());
     if(popup.checked)q.set('popup','1');
@@ -130,7 +137,11 @@ code{background:#272e4c;border-radius:5px;padding:2px 5px;color:#deecff}
     }
     dns.href=base+'ifywnx-Locket-DNS.mobileconfig';
   }
-  buttons.forEach(b=>b.addEventListener('click',()=>{theme=b.dataset.id||'original';update()}));
+  buttons.forEach(b=>b.addEventListener('click',()=>{
+    const next=b.dataset.id||'original';
+    if(next!==theme&&next!=='original'&&next!=='shinchan')input.value='';
+    theme=next;update();
+  }));
   input.addEventListener('input',update);
   popup.addEventListener('change',update);
   update();
