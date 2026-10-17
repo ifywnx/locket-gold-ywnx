@@ -1,0 +1,37 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+const root=path.resolve(process.argv[2]||'.');
+const out=process.argv[3]?path.resolve(process.argv[3]):null;
+const get=(p)=>{try{return fs.readFileSync(path.join(root,p),'utf8')}catch(e){if(e.code==='ENOENT')return null;throw e}};
+const site=get('Website hiện tại/lib/private-assets.ts');
+const base=get('Bộ cài gốc/Locket_Unlocked.js');
+const conf=get('Bộ cài gốc/ifywnx-Locket-Config.conf');
+const mod=get('Bộ cài gốc/Locket_ifywnx.sgmodule');
+const dns=get('Bộ cài gốc/ifywnx-Locket-DNS.mobileconfig');
+const oldDns=get('Bộ cài gốc/DNS dự phòng/DNS cũ.mobileconfig');
+const parse=()=>{if(!site)return null;const m=site.match(/^export\s+const\s+assets[^=]*=\s*(\{[\s\S]*\})\s*;?\s*$/);if(!m)return null;try{return JSON.parse(m[1])}catch{return null}};
+const assets=parse();
+const snapshot=assets?.['Locket_Unlocked.js']||'';
+const keys=['camera_filter_config','microphone_enabled','camera_microphone_enabled','video_sound_enabled','widget_frame_event','feature_gates'];
+const has=(s,k)=>new RegExp('\\b'+k+'\\s*:').test(s||'');
+const drift=keys.filter(k=>has(snapshot,k)!==has(base,k));
+const filterIds=[...new Set([...(snapshot.match(/camera_filter_config\s*:\s*JSON\.stringify\(\s*(\{[\s\S]*?\})\s*\)\s*,/)?.[1]||'').matchAll(/filter_ids\s*:\s*\[([^\]]*)\]/g)].flatMap(m=>[...m[1].matchAll(/["']([a-z0-9_-]+)["']/gi)].map(x=>x[1])))];
+const hostname=s=>{const x=s?.match(/<key>ServerURL<\/key>\s*<string>([^<]+)<\/string>/)?.[1];try{return x?new URL(x).hostname:null}catch{return null}};
+const duplicated=['revenuecat','deleteHeader','locket_rc'].filter(k=>new RegExp('^'+k+'\\s*=','m').test(conf||'')&&new RegExp('^'+k+'\\s*=','m').test(mod||''));
+const hasPrivateRaw=(conf||'').includes('raw.githubusercontent.com/')||(mod||'').includes('raw.githubusercontent.com/');
+const findings=[];
+const add=(id,status,detail,fix)=>findings.push({id,status,detail,fix});
+if(!assets)add('SITE_SNAPSHOT','WARN','Không đọc được snapshot website','Kiểm tra format private-assets.ts và bản đang deploy');
+if(drift.length)add('DRIFT','WARN',drift.join(', '),'Đối chiếu website đã deploy và bản gốc trước khi sửa');
+if(filterIds.length)add('FILTER_IDS','REVIEW',filterIds.length+' filter ID xuất hiện trong JSON','Không đánh giá PASS trước khi ảnh trước/sau có hiệu ứng thực');
+if(keys.slice(1,4).some(k=>has(snapshot,k)))add('MICROPHONE','REVIEW','Có cờ mic/video sound trong snapshot','Kiểm tra track âm thanh ở file gửi và file nhận');
+if(duplicated.length)add('DUPLICATE_RULES','WARN',duplicated.join(', '),'Dùng Config hoặc Module, không bật cùng lúc');
+if(hasPrivateRaw)add('PRIVATE_RAW_URLS','WARN','Manifest mẫu dùng raw GitHub URL','Website phải thay thành đường dẫn download có xác thực');
+if(hostname(dns)&&hostname(oldDns)&&hostname(dns)!==hostname(oldDns))add('DNS_DRIFT','INFO',hostname(dns)+' khác '+hostname(oldDns),'Giữ DNS hiện hành, xác minh nguồn triển khai');
+add('AI_LOOK','UNVERIFIED','UI Tạo diện mạo có nhưng không xử lý trên iPhone kiểm thử','Cần kiểm tra phản hồi ứng dụng/server khi sử dụng tài khoản có quyền');
+add('FRIEND_BADGE','UNVERIFIED','Huy hiệu phía người khác chưa được xác minh','So sánh hai thiết bị và dữ liệu hồ sơ được máy chủ chấp thuận');
+const result={kind:'STATIC_SOURCE_AUDIT_ONLY',snapshotParsed:Boolean(assets),snapshotKeys:Object.fromEntries(keys.map(k=>[k,has(snapshot,k)])),baselineKeys:Object.fromEntries(keys.map(k=>[k,has(base,k)])),filterIdsDeclared:filterIds.length,filterIdsConfirmedWorking:false,dnsHosts:{current:hostname(dns),old:hostname(oldDns)},findings};
+const md=['# Locket V8 — Kiểm tra cấu hình','', '> Kiểm tra tĩnh, không chứng minh các tính năng chạy thật.','',...findings.flatMap(f=>['## '+f.id+' ('+f.status+')',f.detail,'','Hướng xử lý: '+f.fix,''])].join('\n');
+if(out){fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'audit.json'),JSON.stringify(result,null,2)+'\n');fs.writeFileSync(path.join(out,'audit.md'),md+'\n')}
+console.log(md);console.log('Findings: '+findings.length);
