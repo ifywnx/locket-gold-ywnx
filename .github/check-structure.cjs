@@ -21,3 +21,13 @@ const route=fs.readFileSync('Website hiện tại/app/download/[token]/[file]/ro
 assert.ok(route.includes('assets[file]') && route.includes('replace('));
 assert.ok(fs.existsSync('Bộ cài gốc/DNS dự phòng/DNS cũ.mobileconfig'));
 console.log('PASS: four source folders, matching install exports, authenticated asset targets, DNS backup.');
+
+const page=fs.readFileSync('Website hiện tại/public/welcome/index.html','utf8');
+const installer=fs.readFileSync('Website hiện tại/public/welcome/app.js','utf8');
+assert.ok(page.includes('Không bật cả hai bộ quy tắc Locket cùng lúc'));
+assert.ok(installer.includes('Cài Module thay thế'));
+assert.ok(!page.includes('Module → Config → DNS'));
+for (const script of ['Bộ cài gốc/Locket_ifywnx.js','Bộ cài gốc/Locket_Unlocked.js','Bộ cài gốc/deleteHeader.js']) {
+  cp.execFileSync(process.execPath,['--check',script]);
+}
+console.log('PASS: single setup path and script syntax.');
