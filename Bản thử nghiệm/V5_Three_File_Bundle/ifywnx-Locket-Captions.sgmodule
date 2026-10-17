@@ -1,0 +1,10 @@
+#!name=ifywnx-Locket-Captions-V5-Test
+#!desc=V5 Creative: 136 caption + widget fallback; test only
+# For an existing compatible Shadowrocket config. One Locket module at a time.
+# No RevenueCat rewrite, no paid entitlement modification.
+
+[Script]
+v5_creative = type=http-response, pattern=^https:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-4252a\/namespaces\/firebase:fetch(?:\?.*)?$, script-path=__V5_ASSET_BASE__Locket_V5_Creative.js, requires-body=true, max-size=524288, timeout=30
+
+[MITM]
+hostname = %APPEND% firebaseremoteconfig.googleapis.com
