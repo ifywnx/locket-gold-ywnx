@@ -1,0 +1,9 @@
+#!name=ifywnx-Header-Diagnostics
+#!desc=Read-only request header presence check; does not remove headers
+# TEMPLATE: replace YOUR_PUBLIC_HTTPS_HOST before importing.
+
+[Script]
+revenuecat_header_diag = type=http-request, pattern=^https:\/\/api\.revenuecat\.com\/.+\/(?:receipts|subscribers)(?:\/.*)?$, script-path=https://YOUR_PUBLIC_HTTPS_HOST/ifywnx-tests/headers/Header_Readonly_Diagnostics.js, timeout=30
+
+[MITM]
+hostname = %APPEND% api.revenuecat.com
