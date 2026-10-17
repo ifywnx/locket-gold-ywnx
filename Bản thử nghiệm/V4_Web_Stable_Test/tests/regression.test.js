@@ -50,7 +50,7 @@ check("popup test only if absent",()=>{const f=fixture();const v=getChanged("pop
 check("popup preserves existing",()=>{const f=fixture();f.entries.feature_discovery_popup_config=JSON.stringify({uid:"server"});assert(!run("popup",f).output.body)});
 check("other User-Agent untouched",()=>{for(const name of ["captions","widget","popup","camera","core"])assert(!run(name,fixture(),"OtherApp/2").output.body)});
 check("prefix/suffix User-Agent not accepted",()=>{for(const ua of ["myLocket","UnLocketClient"])assert(!run("captions",fixture(),ua).output.body)});
-check("lowercase Locket UA accepted",()=>{assert(getChanged("captions",fixture()).entries.overlay_items)});
+check("lowercase Locket UA accepted",()=>{assert(!!run("captions",fixture(),"locket/1.0").output.body)});
 check("invalid JSON safe",()=>{for(const name of ["captions","widget","popup","camera","core"])assert(!run(name,"{broken").output.body)});
 check("missing entries safe",()=>{for(const name of ["captions","widget","popup","camera","core"])assert(!run(name,{other:1}).output.body)});
 check("entries array safe",()=>{for(const name of ["captions","widget","popup","camera","core"])assert(!run(name,{entries:[]}).output.body)});
