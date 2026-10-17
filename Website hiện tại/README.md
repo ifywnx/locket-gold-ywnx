@@ -33,3 +33,7 @@ Dùng workflow Sites với Vinext. Cần Node >=22.13. Cài dependency theo lock
 Kiểm thử local bằng fixture ở database local; không đưa mã thử vào production. Kiểm tra invalid/expired/revoked code, tải module, tải script, path ngoài allowlist và quyền admin trước khi phát hành.
 
 Site mới dùng database trống và tài khoản chủ mới. Mã của site cũ không có hiệu lực ở site này.
+
+## Cách cài không trùng quy tắc
+
+Trang chào mừng ưu tiên **Config**. Với người đã có cấu hình riêng, **Module** là lựa chọn thay thế, không phải bước bắt buộc. DNS là tùy chọn và không tự cấp quyền Gold. Sửa mã web trong GitHub không tự cập nhật website Sites đang chạy: cần triển khai lại.
