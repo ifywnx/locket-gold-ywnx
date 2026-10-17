@@ -51,3 +51,5 @@ if(cfg.paymentsEnabled){document.querySelector('.preview').hidden=true;try{order
 select(plan,true);
 
 async function loadAccount(session){const request=accountRequest;try{const d=await api('/api/download-account',{headers:{Authorization:'Bearer '+session}});if(request!==accountRequest)return;$('apple-email').value=d.email;$('apple-password').value=d.password;$('copy-password').disabled=$('reveal').disabled=false}catch(e){if(request===accountRequest)$('copy-status').textContent=e.message}}
+
+if(cfg.testMode){render('installation-test','standard',true);$('buy').disabled=true;$('payment-status').textContent='Đang thử bộ cài · Thanh toán tạm tắt.';$('unlock').hidden=true;document.querySelector('.preview').hidden=true;}

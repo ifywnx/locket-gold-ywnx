@@ -1,1 +1,1 @@
-window.IFYWNX_CONFIG={paymentsEnabled:false,backend:''};
+window.IFYWNX_CONFIG={paymentsEnabled:false,backend:'',testMode:true};
