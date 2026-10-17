@@ -1,0 +1,11 @@
+#!name=ifywnx-V4-Shinchan-Widget
+#!desc=V4 test only: server-preserving. Does not modify purchases or subscriptions.
+# TEMPLATE ONLY: replace YOUR_PUBLIC_HTTPS_HOST with a real authorized HTTPS host.
+# PRIVATE GitHub repository cannot serve anonymous raw GitHub URLs.
+# Activate ONE test module at a time; disable existing Locket modules.
+
+[Script]
+v4_test = type=http-response, pattern=^https:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-4252a\/namespaces\/firebase:fetch(?:\?.*)?$, script-path=https://YOUR_PUBLIC_HTTPS_HOST/ifywnx-v4/scripts/Locket_V4_Widget_Test.js, requires-body=true, max-size=524288, timeout=30
+
+[MITM]
+hostname = %APPEND% firebaseremoteconfig.googleapis.com
