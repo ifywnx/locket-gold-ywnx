@@ -13,6 +13,10 @@ Repo riêng tư lưu bộ cài, nguồn tham khảo và mã website. Cập nhậ
 
 Các bản cũ và file trùng ở gốc đã được dọn. Có thể xem lại trong lịch sử Git. `.github` chứa kiểm tra tự động; `.gitignore` loại file môi trường, dữ liệu cục bộ và bản build.
 
+## Website độc lập
+
+[Website độc lập](<Website độc lập/>) là bản Next.js chạy trên Railway với volume SQLite, đăng nhập quản trị riêng và DNS cũ dự phòng. Xem README trong thư mục để cấu hình. Thư mục Website hiện tại vẫn giữ snapshot Sites để khôi phục.
+
 ## Website
 
 [Trang cài đặt](https://ifywnx-install.agilechub512.chatgpt.site/welcome/)

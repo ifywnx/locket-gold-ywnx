@@ -9,3 +9,6 @@ dist/
 *.db
 *.p12
 *.pfx
+
+.next/
+data/
