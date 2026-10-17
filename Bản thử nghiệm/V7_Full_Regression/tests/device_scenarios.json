@@ -1,0 +1,217 @@
+{
+  "title": "ifywnx V7 integrated device regression",
+  "version": "0.1",
+  "kind": "ONE_SESSION_DEVICE_TEST_PLAN",
+  "requires": [
+    "Own test iPhone",
+    "Consented camera/photo data",
+    "One Shadowrocket config (not both conf and sgmodule)",
+    "A known-working baseline V3 before attempting a test build"
+  ],
+  "disclaimer": "Scenario descriptions are proposed test cases; unavailable native app features must be reported BLOCKED, not PASS.",
+  "scenarios": [
+    {
+      "id": "INSTALL",
+      "name": "Cài và khởi động",
+      "steps": "Chọn đúng một .conf hoặc .sgmodule, cài MITM hợp lệ; mở Locket",
+      "expected": "App mở và không crash; không xung đột 2 script",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "LOGIN",
+      "name": "Đăng nhập / phiên",
+      "steps": "Đăng nhập vào tài khoản thử của chính bạn và mở lại Locket",
+      "expected": "Phiên hợp lệ; không lặp đăng nhập",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "REMOTE_CONFIG",
+      "name": "Tải cấu hình",
+      "steps": "Quan sát log của phiên thử và khởi động lại ứng dụng",
+      "expected": "Không có lỗi JSON/timeout; bản gốc khác biệt được ghi nhận",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "CAPTION_136",
+      "name": "Caption 136 mẫu",
+      "steps": "Mở giao diện chèn caption; tìm một số mục ở đầu và cuối danh mục",
+      "expected": "Caption mới hiển thị và sử dụng được; không mất caption server",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "CAPTION_ACCENTS",
+      "name": "Dấu và emoji",
+      "steps": "Chọn caption có tiếng Việt, emoji, chuyển dòng và màu nền",
+      "expected": "Chữ không vỡ và ảnh đăng đúng",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "CAPTION_NATIVE",
+      "name": "Caption máy chủ",
+      "steps": "Chọn caption có sẵn ở bản gốc và so sánh",
+      "expected": "Không mất mục cũ hoặc bị trùng",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "WIDGET_NATIVE",
+      "name": "Widget khung gốc",
+      "steps": "Chọn Khung gốc trên website, nhập cấu hình tương ứng",
+      "expected": "Khung sẵn có của máy chủ được giữ nguyên",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "WIDGET_SHIN",
+      "name": "Widget Shin-chan",
+      "steps": "Chọn khung Shin-chan rồi mở lại widget",
+      "expected": "Hình khung render đúng, không lệch tỉ lệ",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "WIDGET_CUSTOM",
+      "name": "Widget ảnh tùy chọn",
+      "steps": "Chọn ảnh có quyền sử dụng từ ImgBB rồi thử",
+      "expected": "Ảnh được tải và render; không đè khi chọn Khung gốc",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "WIDGET_RESIZE",
+      "name": "Tỷ lệ widget",
+      "steps": "Đối chiếu các kích cỡ Home Screen/Lock Screen có trong thiết bị",
+      "expected": "Không méo, cắt sai hoặc che ảnh",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "POPUP",
+      "name": "Popup chào mừng",
+      "steps": "Thử bật/tắt popup V6 ở cấu hình test, khởi động lại",
+      "expected": "Không lặp vô tận; không ghi đè popup sẵn có",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "CAM_PHOTO",
+      "name": "Camera chụp ảnh",
+      "steps": "Mở camera, chụp ảnh bằng camera trước và sau",
+      "expected": "Chụp và gửi thành công",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "CAM_ZOOM",
+      "name": "Zoom và flash",
+      "steps": "Kiểm tra các nút zoom/flash mà phiên bản app hỗ trợ",
+      "expected": "Không treo, không lỗi quyền camera",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "CAM_FILTER_LIST",
+      "name": "Danh sách hiệu ứng",
+      "steps": "Mở Tạo diện mạo/Filter, ghi tên một ID được hiển thị",
+      "expected": "Menu hoạt động, không trống hoặc lỗi giao diện",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "CAM_FILTER_RENDER",
+      "name": "Hiệu ứng thực tế",
+      "steps": "Chọn một filter và xem kết quả thời gian thực",
+      "expected": "Hiệu ứng thật được áp dụng, không chỉ có tên",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "CAM_FILTER_DOWNLOAD",
+      "name": "Tải tài nguyên hiệu ứng",
+      "steps": "Nếu filter lỗi, thử lại Wi-Fi/4G và xem log lỗi mạng không chứa token",
+      "expected": "Tài nguyên tải được; nếu app không hỗ trợ báo BLOCKED",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "VIDEO_RECORD",
+      "name": "Quay video",
+      "steps": "Thử quay video thời lượng ứng dụng cho phép",
+      "expected": "Không treo; có âm thanh nếu bật; có thể gửi",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "VIDEO_LONG",
+      "name": "Giới hạn video",
+      "steps": "Kiểm tra 15s/30s với tài khoản có quyền hợp lệ nếu tính năng tồn tại",
+      "expected": "Ghi nhận chính xác giới hạn server cấp, không giả quyền",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "GALLERY",
+      "name": "Ảnh từ thư viện",
+      "steps": "Chọn ảnh từ thư viện để chia sẻ",
+      "expected": "Không bị lỗi quyền ảnh/khung ảnh/crop",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "UPLOAD",
+      "name": "Tải ảnh lên",
+      "steps": "Gửi ảnh/video thử tới người nhận đã đồng ý",
+      "expected": "Người nhận thực sự nhận được nội dung",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "FRIENDS",
+      "name": "Bạn bè",
+      "steps": "Mở danh sách bạn bè, tìm kiếm và thêm bằng tài khoản thử được phép",
+      "expected": "Giao diện hoạt động, tôn trọng giới hạn server",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "REPLIES",
+      "name": "Trả lời và tương tác",
+      "steps": "Trả lời một ảnh thử và xem ở cả hai phía",
+      "expected": "Không gửi lặp hoặc mất phản hồi",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "PROFILE",
+      "name": "Hồ sơ và cài đặt",
+      "steps": "Mở cài đặt, ảnh đại diện, chọn icon/theme nếu app cho phép",
+      "expected": "Không crash; mục nào có quyền hợp lệ chạy đúng",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "HISTORY",
+      "name": "Lịch sử",
+      "steps": "Mở lịch sử và làm mới; kiểm tra ảnh cũ còn hiển thị",
+      "expected": "Không lỗi tải ảnh hoặc cache",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "NOTIFICATIONS",
+      "name": "Thông báo",
+      "steps": "Gửi ảnh thử rồi kiểm tra thông báo trên thiết bị nhận",
+      "expected": "Thông báo hoạt động theo quyền iOS",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "DNS_WIFI",
+      "name": "DNS trên Wi-Fi",
+      "steps": "Không dùng hai DNS cùng lúc; kiểm tra mở app qua Wi-Fi",
+      "expected": "Kết nối bình thường, không lỗi phân giải tên miền",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "DNS_CELLULAR",
+      "name": "DNS trên 4G/5G",
+      "steps": "Thử cùng chức năng trên mạng di động",
+      "expected": "Không lỗi mạng và tài nguyên filter",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "CACHE_REOPEN",
+      "name": "Đóng và mở lại",
+      "steps": "Thoát hẳn ứng dụng rồi mở lại",
+      "expected": "Không mất cấu hình hợp lệ hoặc treo app",
+      "initialStatus": "NOT_RUN"
+    },
+    {
+      "id": "ROLLBACK",
+      "name": "Quay lại V3",
+      "steps": "Tắt cấu hình thử và bật lại V3, không xoá dữ liệu",
+      "expected": "Bản gốc hoạt động như trước",
+      "initialStatus": "NOT_RUN"
+    }
+  ]
+}
