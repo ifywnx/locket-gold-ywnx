@@ -1,0 +1,17 @@
+#!name=ifywnx-Locket-Minimal-Test
+#!desc=Template thử độc lập caption, widget, popup và chẩn đoán
+# PRIVATE REPO: sửa YOUR_PUBLIC_HTTPS_HOST thành nguồn HTTPS có thể tải từ iPhone.
+# Chỉ bật 1 dòng Script mỗi lần. Tắt module Locket cũ để tránh chạy chồng.
+
+[Script]
+captions_test = type=http-response, pattern=^https:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-4252a\/namespaces\/firebase:fetch(?:\?.*)?$, script-path=https://YOUR_PUBLIC_HTTPS_HOST/ifywnx-tests/captions/Locket_Captions_Test.js, requires-body=true, max-size=524288, timeout=30
+
+# Nếu cần thử phần khác, tắt captions_test và sử dụng module .sgmodule riêng.
+# core/ifywnx-Core-Diagnostics.sgmodule
+# camera/ifywnx-Camera-Diagnostics.sgmodule
+# widget/ifywnx-Shinchan-Widget-Test.sgmodule
+# popup/ifywnx-Popup-Test.sgmodule
+# diagnostics/ifywnx-Overlay-Diagnostics.sgmodule
+
+[MITM]
+hostname = %APPEND% firebaseremoteconfig.googleapis.com
