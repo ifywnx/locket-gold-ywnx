@@ -20,7 +20,8 @@ function run(relativeFile, body, userAgent = "Locket/1.0") {
   };
   vm.runInNewContext(code, context, { filename: relativeFile, timeout: 2000 });
   assert.equal(calls, 1, relativeFile + " must call $done exactly once");
-  return returned;
+  // Normalize cross-realm objects from vm before comparing them with assert/strict.
+  return JSON.parse(JSON.stringify(returned));
 }
 
 function check(name, fn) {
