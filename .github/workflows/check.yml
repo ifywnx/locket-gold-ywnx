@@ -10,5 +10,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node scripts/check.cjs
+      - run: node .github/check-structure.cjs
       - run: git diff --check

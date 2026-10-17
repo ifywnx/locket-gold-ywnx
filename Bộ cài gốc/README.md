@@ -4,4 +4,4 @@ Bản xuất từ bộ cài đang phục vụ trên web ngày 17/10/2026, không
 
 Thứ tự: Module → Config → DNS. Config và module có quy tắc trùng, không bật đồng thời. DNS hiện tại: ifywnx · DNS riêng (NextDNS). Bản DNS trước đổi nằm trong `DNS dự phòng/`.
 
-Các file giữ nguyên nội dung để đối chiếu. URL nội bộ vẫn dùng đường dẫn tương thích ở gốc repo; repo riêng tư nên khách cài qua website đã xác thực.
+Các file giữ nguyên nội dung để đối chiếu. URL nội bộ là mẫu được máy chủ thay thành đường dẫn có xác thực khi tải. Các đường dẫn raw cũ ở gốc repo đã dọn; khách cài qua website.
