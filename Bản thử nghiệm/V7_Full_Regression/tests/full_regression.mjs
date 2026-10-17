@@ -103,7 +103,7 @@ test('16 other application UA ignored', () => {
   assert.equal(execute(fixture, '', false, 'OtherApp').answer.body, undefined);
 });
 test('17 fallback never assumes native camera functionality', () => {
-  assert.ok(!v6.includes('entries.camera_filter_config='));
+  assert.ok(!/entries\.camera_filter_config\s*=(?!=)/.test(v6));
 });
 test('18 source and fixture contain no private tokens', () => {
   assert.ok(!JSON.stringify(findings).includes('sk-'));
