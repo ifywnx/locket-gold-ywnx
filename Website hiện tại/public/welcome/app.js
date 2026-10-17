@@ -17,14 +17,20 @@ function render(session,packageId,demo=false){
  if(packageId==='plus'&&!demo)loadAccount(session);
  $('downloads').hidden=false;$('demo-note').hidden=true;$('apple').hidden=packageId!=='plus';$('cards').replaceChildren();
  const options=[
- ['ifywnx-Locket-Captions.sgmodule','1 · Cài module Locket','Nhập module vào Shadowrocket.','Cài module →'],
- ['ifywnx-Locket-Config.conf','2 · Cài cấu hình','Nhập rồi chọn cấu hình. Cấu hình này đã có quy tắc Locket: tắt module trùng trước khi bật kết nối.','Cài cấu hình →'],
+ ['ifywnx-Locket-Config.conf','1 · Cấu hình Locket (khuyến nghị)','Chỉ cài Config nếu chưa có cấu hình. Không bật thêm module trùng quy tắc.','Cài cấu hình →'],
  ['ifywnx-Locket-DNS.mobileconfig','3 · DNS riêng ifywnx','Tuỳ chọn. Gỡ hồ sơ DNS cũ, mở bằng Safari rồi cài hồ sơ mới trong Cài đặt iPhone.','Cài DNS →']
  ];
  for(const [file,title,description,label] of options){
  const card=document.createElement('article'),h=document.createElement('h3'),p=document.createElement('p');h.textContent=title;p.textContent=description;
  card.append(h,p,installLink(session,file,label));$('cards').append(card);
  }
+ const alternative=document.createElement('details');
+ const summary=document.createElement('summary');
+ summary.textContent='Đã có cấu hình Shadowrocket? Dùng Module thay thế';
+ const desc=document.createElement('p');
+ desc.textContent='Chỉ dùng một cách: Config hoặc Module. Không bật đồng thời cả hai bộ quy tắc Locket.';
+ alternative.append(summary,desc,installLink(session,'ifywnx-Locket-Captions.sgmodule','Cài Module thay thế →'));
+ $('cards').append(alternative);
  $('downloads').scrollIntoView({behavior:'smooth'});
 }
 function prepareInstallation(){
