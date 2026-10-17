@@ -49,7 +49,7 @@ Script hỗ trợ `scripts/Locket_V6_Creative.js` do website phân phối; ngư�
 1. Trên website ifywnx, đăng nhập/kích hoạt bằng mã của chính bạn.
 2. Mở mục `🧪 Thử nghiệm V6 · Chọn khung widget` trong phần cài đặt, bấm vào trang chủ đề.
 3. Chọn khung. Với Capybara, Chihuahua, Kittycore, Meme hoặc ảnh riêng, dán Direct Link ImgBB PNG/JPG/WebP; ô preview hiện ảnh thực tế.
-4. Bật popup nếu muốn. Bấm **một trong hai**: `.conf` **hoặc** `.sgmodule`.
+4. Bật popup nếu muốn. Bấm **Cài Config vào Shadowrocket** hoặc **Cài Module vào Shadowrocket** (link deep link). Cũng có nút tải file `.conf` / `.sgmodule` để nhập thủ công. **Chỉ chọn một cách**.
 5. Trên Shadowrocket, sao lưu/tắt toàn bộ module Locket V3/V4/V5 để tránh cùng bắt Remote Config. Sau đó nhập file V6 được tải qua trang web. Cần HTTPS MITM được cấu hình hợp lệ.
 6. DNS là tùy chọn. V6 dùng **NextDNS `dcc5ee`** của file chính (định danh profile thử riêng). uBlockDNS cũ không được chuyển mặc định; xem file dự phòng riêng nếu cần đối chiếu DNS.
 7. Mở Locket, kiểm tra 136 caption, ảnh widget nếu được hỗ trợ và popup (chỉ khi server thiếu popup). Test một lần với DNS tự động trước để cô lập lỗi.
