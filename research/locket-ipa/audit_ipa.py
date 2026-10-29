@@ -98,8 +98,9 @@ def inspect(path: pathlib.Path) -> dict:
             if name.startswith(root) and name.lower().endswith(".dylib")
         )
         result["third_party_frameworks"] = sorted(
-            {x.split("/")[2] for x in names if x.startswith(root + "Frameworks/")
-             and len(x.split("/")) >= 3}
+            {x.removeprefix(root + "Frameworks/").split("/")[0]
+             for x in names if x.startswith(root + "Frameworks/")
+             and x.removeprefix(root + "Frameworks/")}
         )
         result["signing_resources_present"] = root + "_CodeSignature/CodeResources" in names
         result["provisioning_profile_present"] = root + "embedded.mobileprovision" in names
