@@ -1,0 +1,31 @@
+name: AN Moments iOS Build
+
+on:
+  push:
+    branches:
+      - feature/an-moments-ios-prototype
+    paths:
+      - "ANMoments-iOS/**"
+      - ".github/workflows/an-moments-ios.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Generate Xcode project
+        working-directory: ANMoments-iOS
+        run: xcodegen generate
+      - name: Compile iOS Simulator app
+        working-directory: ANMoments-iOS
+        run: |
+          xcodebuild -project ANMoments.xcodeproj \
+            -scheme ANMoments \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO build
