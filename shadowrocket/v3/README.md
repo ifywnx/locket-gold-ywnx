@@ -52,3 +52,10 @@ node shadowrocket/v3/verify-v3.mjs
 ```
 
 Kiểm tra nội bộ cấu trúc/đường dẫn và cờ video, không phải kiểm thử trên iPhone.
+
+## Đối chiếu V3 web / bản công khai (20/11/2026)
+
+- `An-Locket.sgmodule`, `Locket_Unlocked.js`, `Locket_An.js`, `deleteHeader.js` và `statusCheck.js` khớp với nguồn chuẩn `ifywnx/locketgold-r/v3` sau khi đổi `__ASSET_BASE__` thành URL raw GitHub. Thư viện là **705 caption tĩnh + 11 overlay động**.
+- Đã bổ sung `assets/locket-gold-an.png` để tránh lỗi 404 khi popup chào mừng tải ảnh. Đây là **biểu tượng AN từ favicon của website**, không phải bản sao pixel-perfect của ảnh popup 1,6 MB trong repo website. Có thể thay ảnh gốc đúng tên file khi có bản public phù hợp.
+- `verify-v3.mjs` kiểm tra file `.conf` khớp module, có đủ JS, tài nguyên popup thực sự nằm trong repo và cú pháp JS bằng CI.
+- Không thay đổi script V3 cốt lõi hoặc cờ `upload_main`, không nhập bản thử PhotoBooth/AI Filter, không bật thêm hook ngoài cấu hình web. Có JS đúng chưa chứng minh Gold, video 30s, Filter, PhotoBooth hay upload hoạt động với mọi bản Locket trên iPhone. Chúng cần kiểm tra thực tế.

@@ -1,0 +1,31 @@
+name: Check An Locket V3 public bundle
+on:
+  push:
+    branches: [main, fix/v3-web-parity-20261120]
+    paths:
+      - 'shadowrocket/v3/**'
+      - '.github/workflows/v3-parity-check.yml'
+  pull_request:
+    paths:
+      - 'shadowrocket/v3/**'
+      - '.github/workflows/v3-parity-check.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-v3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate Shadowrocket V3 bundle and image assets
+        run: node shadowrocket/v3/verify-v3.mjs
+      - name: Check JavaScript syntax
+        run: |
+          node --check shadowrocket/v3/Locket_Unlocked.js
+          node --check shadowrocket/v3/Locket_An.js
+          node --check shadowrocket/v3/deleteHeader.js
+          node --check shadowrocket/v3/statusCheck.js
