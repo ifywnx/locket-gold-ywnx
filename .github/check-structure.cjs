@@ -2,9 +2,7 @@ const fs = require('node:fs');
 const assert = require('node:assert/strict');
 const cp = require('node:child_process');
 const folders = ['Bộ cài gốc','Mã nguồn đã clone','Website hiện tại','Các ứng dụng khác'];
-// These historical top-level directories already exist in the repository; the
-// original four folders above remain mandatory and keep their snapshot checks.
-const allowed = new Set([...folders,'Bản thử nghiệm','Website độc lập','shadowrocket','README.md','.github','.gitignore']);
+const allowed = new Set([...folders,'README.md','.github','.gitignore']);
 for (const folder of folders) assert.ok(fs.statSync(folder).isDirectory());
 for (const file of cp.execFileSync('git',['ls-files','-z'],{encoding:'utf8'}).split('\0').filter(Boolean)) {
  assert.ok(allowed.has(file.split('/')[0]),'Unexpected root entry: '+file);
